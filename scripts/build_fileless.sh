@@ -43,6 +43,6 @@ installdepends
 buildweb
 cp2server
 
-curl 'Server IP' ifconfig.me
+echo 'Server IP' `curl ifconfig.me`
 echo 
 echo "Bash Build OK!"
