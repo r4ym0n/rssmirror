@@ -27,10 +27,11 @@ cp2server() {
 
     # denger Clean
     if [ $ISDEV ];then
-        rm -rf $SERVER_BASE_PATH/public/app/
+        # rm -rf $SERVER_BASE_PATH/public/app/
+        echo "mving ${PAGE_BASE_PATH}/build to ${SERVER_BASE_PATH}/public/app/"
         mv $PAGE_BASE_PATH/build $SERVER_BASE_PATH/public/app
-        rm -rf $PAGE_BASE_PATH 
-        echo "remove react dev"
+        # rm -rf $PAGE_BASE_PATH 
+        echo "web placed in ${SERVER_BASE_PATH}/public/app/"
     else
         echo "DONT exec this file on dev-env"
     fi
@@ -43,6 +44,6 @@ installdepends
 buildweb
 cp2server
 
-echo 'Server IP' `curl ifconfig.me`
+echo 'Server IP' `curl ifconfig.me -q 2>/dev/null`
 echo 
 echo "Bash Build OK!"
