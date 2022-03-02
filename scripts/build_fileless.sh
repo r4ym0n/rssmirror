@@ -2,7 +2,7 @@
 FPWD=`cd $(dirname "$0");pwd`
 # echo $FPWD
 BASE_PATH=$FPWD/../
-PAGE_BASE_PATH=$BASE_PATH/page
+PAGE_BASE_PATH=$BASE_PATH/pages/homepage
 SERVER_BASE_PATH=$BASE_PATH/server
 cd $BASE_PATH
 
@@ -18,7 +18,7 @@ buildweb() {
 
 cp2server() {
     pushd . 1>/dev/null 2>&1
-    cp -R $PAGE_BASE_PATH/dist/* $SERVER_BASE_PATH/public/app/
+    cp -R $PAGE_BASE_PATH/build/* $SERVER_BASE_PATH/public/app/
     # denger Clean
     if [ $ISDEV ];then
         rm -rf $PAGE_BASE_PATH 
