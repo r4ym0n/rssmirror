@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 
@@ -22,7 +22,7 @@ function App() {
           <h1>
             The RSS of Mirror
           </h1>
-          <img src='/rss.png' className='rss-logo' />
+          <img src='/rss.png' className='rss-logo' alt='rsslogo'/>
 
         </div>
 
