@@ -7,17 +7,24 @@ SERVER_BASE_PATH=$BASE_PATH/server
 cd $BASE_PATH
 
 installdepends() {
+    echo "Installing dependencies..."
     cd $PAGE_BASE_PATH && npm i 1>/dev/null 2>&1
 }
+
 buildweb() {
     pushd . 1>/dev/null 2>&1 
     cd $PAGE_BASE_PATH
+    echo "working on ${PAGE_BASE_PATH}"
+    echo "start build web"
     npm run build 1>/dev/null
+    echo "build web success"
     popd 1>/dev/null 2>&1
 }
 
 cp2server() {
     pushd . 1>/dev/null 2>&1
+    echo "working on ${PAGE_BASE_PATH}"
+
     # denger Clean
     if [ $ISDEV ];then
         rm -f $SERVER_BASE_PATH/public/app/
@@ -35,6 +42,6 @@ installdepends
 buildweb
 cp2server
 
-curl ifconfig.me
-
+curl 'Server IP' ifconfig.me
+echo 
 echo "Bash Build OK!"
