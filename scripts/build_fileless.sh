@@ -18,11 +18,12 @@ buildweb() {
 
 cp2server() {
     pushd . 1>/dev/null 2>&1
-    cp -R $PAGE_BASE_PATH/build/* $SERVER_BASE_PATH/public/app/
     # denger Clean
     if [ $ISDEV ];then
+        rm -f $SERVER_BASE_PATH/public/app/
+        mv $PAGE_BASE_PATH/build $SERVER_BASE_PATH/public/app
         rm -rf $PAGE_BASE_PATH 
-        echo "remove vue dev"
+        echo "remove react dev"
     else
         echo "DONT exec this file on dev-env"
     fi
