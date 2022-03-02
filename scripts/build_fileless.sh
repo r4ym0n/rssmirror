@@ -33,6 +33,8 @@ cp2server() {
         # rm -rf $PAGE_BASE_PATH 
         echo "web placed in ${SERVER_BASE_PATH}/public/app/"
     else
+        mv $PAGE_BASE_PATH/build $SERVER_BASE_PATH/public/app
+        echo "mving ${PAGE_BASE_PATH}/build to ${SERVER_BASE_PATH}/public/app/"
         echo "DONT exec this file on dev-env"
     fi
     echo $SERVER_BASE_PATH
