@@ -22,7 +22,6 @@ app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
 
-
 if (fs.existsSync(__dirname + '/public/app')) {
   app.use(require('koa-static')(__dirname + '/public/app'))
   debug('using static dir: ' + __dirname + '/public/app')
@@ -54,6 +53,7 @@ app.use(async (ctx, next) => {
   let url = ctx.url
   // if(RegExp("/msg/de/*", "g").exec(url) != null){url = '/msg/de/*'}
   // if(RegExp("/msg/en/*", "g").exec(url) != null){url = '/msg/en/*'}
+  debug(__dirname, fs.existsSync(__dirname + '/public/app'), fs.existsSync(__dirname + '/server/public/app'))
   debug(`${ctx.method} ${url} - ${ms}ms`)
 })
 
