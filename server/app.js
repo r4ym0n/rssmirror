@@ -4,6 +4,8 @@ const Koa = require('koa')
 const app = new Koa()
 // const views = require('koa-views')
 const json = require('koa-json')
+const fs= require("fs")
+
 const onerror = require('koa-onerror')
 const logger = require('koa-logger')
 const bodyparser = require('koa-bodyparser')
@@ -11,7 +13,7 @@ const rss = require('./modules/rss_maker')
 const index = require('./routes/index')
 const users = require('./routes/users')
 // const msg = require('./routes/msg')
-
+const debug = require('debug')('server:app')
 // error handler
 onerror(app)
 
@@ -22,7 +24,17 @@ app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
 
-app.use(require('koa-static')(__dirname + '/public/app'))
+fs.access(__dirname + '/public/app', (err) => {
+  console.log(err)
+  if (!err) {
+    app.use(require('koa-static')(__dirname + '/public/app'))
+    debug('using static dir: ' + __dirname + '/public/app')
+  } else {
+    app.use(require('koa-static')(__dirname + '/server/public/app/'))
+    debug('using static dir: ' + __dirname + '/server/public/app/')
+  }
+})
+
 
 // app.use(views(__dirname + '/views', {
 //   extension: 'ejs'

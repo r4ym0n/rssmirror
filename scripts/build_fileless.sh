@@ -28,7 +28,7 @@ cp2server() {
     # denger Clean
     if [ $ISDEV ];then
         # rm -rf $SERVER_BASE_PATH/public/app/
-        echo "mving ${PAGE_BASE_PATH}/build to ${SERVER_BASE_PATH}/public/app/"
+        echo "mving ${PAGE_BASE_PATH}/build to ${SERVER_BASE_PATH}/public/app"
         mv $PAGE_BASE_PATH/build $SERVER_BASE_PATH/public/app
         # rm -rf $PAGE_BASE_PATH 
         echo "web placed in ${SERVER_BASE_PATH}/public/app/"
