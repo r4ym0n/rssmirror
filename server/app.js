@@ -53,7 +53,7 @@ app.use(async (ctx, next) => {
   let url = ctx.url
   // if(RegExp("/msg/de/*", "g").exec(url) != null){url = '/msg/de/*'}
   // if(RegExp("/msg/en/*", "g").exec(url) != null){url = '/msg/en/*'}
-  debug(__dirname, fs.existsSync(__dirname + '/public/app'), fs.existsSync(__dirname + '/server/public/app'), fs.readdirSync('./'));
+  // debug(__dirname, fs.existsSync(__dirname + '/public/app'), fs.readdirSync('./server'), fs.readdirSync('./'));
   debug(`${ctx.method} ${url} - ${ms}ms`)
 })
 
