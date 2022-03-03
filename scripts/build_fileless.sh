@@ -8,7 +8,7 @@ cd $BASE_PATH
 
 installdepends() {
     echo "Installing dependencies..."
-    cd $PAGE_BASE_PATH && npm i 1>/dev/null 2>&1
+    cd $PAGE_BASE_PATH && npm install --production 1>/dev/null 2>&1
 }
 
 buildweb() {

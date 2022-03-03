@@ -24,16 +24,15 @@ app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
 
-fs.access(__dirname + '/public/app', (err) => {
-  console.log(err)
-  if (!err) {
-    app.use(require('koa-static')(__dirname + '/public/app'))
-    debug('using static dir: ' + __dirname + '/public/app')
-  } else {
-    app.use(require('koa-static')(__dirname + '/server/public/app/'))
-    debug('using static dir: ' + __dirname + '/server/public/app/')
-  }
-})
+
+if (fs.existsSync(__dirname + '/public/app')) {
+  app.use(require('koa-static')(__dirname + '/public/app'))
+  debug('using static dir: ' + __dirname + '/public/app')
+} else {
+  app.use(require('koa-static')(__dirname + '/server/public/app/'))
+  debug('using static dir: ' + __dirname + '/server/public/app/')
+}
+
 
 
 // app.use(views(__dirname + '/views', {
