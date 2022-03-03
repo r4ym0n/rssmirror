@@ -12,7 +12,15 @@ const debug = require('debug')('server:routes:index')
 // var feed = new RSS(feedOptions);
 // var xml = feed.xml({indent: true});
 // console.log(xml)
-
+async function getSidOfStaticFile() {
+    var url = 'https://mirror.xyz/'
+    return axios.get(url).then(function (res) {
+        let sIdx = res.data.search('buildId');
+        let buildId = res.data.slice(sIdx + 10, sIdx + 31)
+        debug(`Get buildId: ${buildId}`)
+        return buildId
+    })
+}
 
 async function gen_rss_from_json(json_url) {
     return axios.get(json_url).then(function (res) {
@@ -147,7 +155,8 @@ async function genRssOfAccount(account) {
     if(cache){
         return cache
     } else {
-        json_url = `https://mirror.xyz/_next/data/W7nhV1k_fDAqMTMyu8ZFk/_sites/${account}.json`
+        let buildId = await getSidOfStaticFile();
+        json_url = `https://mirror.xyz/_next/data/${buildId}/_sites/${account}.json`
         let result = gen_rss_from_json(json_url)
         contentCache(account, result)
         return result
@@ -177,11 +186,12 @@ async function timerToRefreshCache() {
 }
 
 async function main() {
-    let a = await genRssOfAccount(account);
-    console.log(a)
+    // let a = await genRssOfAccount(account);
+    // console.log(a)
+    getSidOfStaticFile()
 }
 
-// main().catch(console.error)
+// main().catch((err) => {console.error(err)})
 
 module.exports = {
     genRssOfAccount,
