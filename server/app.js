@@ -12,9 +12,7 @@ const bodyparser = require('koa-bodyparser')
 const rss = require('./modules/rss_maker')
 const index = require('./routes/index')
 const users = require('./routes/users')
-// const msg = require('./routes/msg')
 const debug = require('debug')('server:app')
-// error handler
 onerror(app)
 
 // middlewares
@@ -56,7 +54,7 @@ app.use(async (ctx, next) => {
   let url = ctx.url
   // if(RegExp("/msg/de/*", "g").exec(url) != null){url = '/msg/de/*'}
   // if(RegExp("/msg/en/*", "g").exec(url) != null){url = '/msg/en/*'}
-  console.log(`${ctx.method} ${url} - ${ms}ms`)
+  debug(`${ctx.method} ${url} - ${ms}ms`)
 })
 
 // routes
